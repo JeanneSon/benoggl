@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Benoggl</title>
+    {% block javascript %}
+    <script type="text/javascript">
+        {% include "jquery.min.js" %}
+        {% include "script.js" %}
+    </script>
+    <!-- The contents of myscript.js will be loaded inside the script tag -->
+    {% endblock %}
+</head>
+
+<body>
+    <h1>Benoggl isch oifach a subbr Sach!</h1>
+    <div id="content">
+        <form method="POST">
+            <label for="nickname">Please enter your nickname</label>
+            <input type="text" name="nickname" id="nickname">
+            <button type="button" id="submit">Start!</button>
+        </form>
+    </div>
+    <button type='button' id='getCards'>Get cards!</button>
+    <button type='button' id='seeDabb'>See dabb!</button>
+    <div id="cards"></div>
+    <div id="dabb"></div>
+    &copy; JeanneSon and
+    <p>By Infanf - Kartenspiel, Public Domain, https://commons.wikimedia.org/w/index.php?curid=4449303</p>
+</body>
+
+</html>

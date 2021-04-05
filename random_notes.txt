@@ -1,0 +1,17 @@
+#import "benoggl-env/lib/site_packages/pathlib"
+
+import pathlib
+
+print(pathlib.Path(__file__))
+
+
+<!-- {% set title = "Main" %}
+{% block javascript %}
+    <script type="text/javascript">
+        {% include "jquery.min.js" %}
+    </script>   
+    <script type="text/javascript">
+        {% include "script.js" %}
+    </script>   
+    <!- The contents of myscript.js will be loaded inside the script tag ->
+{% endblock %} -->
