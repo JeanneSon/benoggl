@@ -1,4 +1,23 @@
 $(function () {
+
+    // javascript web-socket (start)
+    let sock = new WebSocket('ws://' + window.location.host + '/ws'); //consider surrounding by catch block
+
+    sock.onopen = function () {
+        console.log("Connection to server started");
+    };
+
+    sock.onmessage = function (event) {
+        console.log(event.data);
+    };
+
+    $("#message").blur(function () {
+        let msg = $('#message');
+        sock.send(msg.val());
+        msg.val('').focus();
+    });
+
+
     $("#submit").click(function () {
         if ($("#nickname").val().trim() != "") {
             $.post("/nickname", { name: $("#nickname").val().trim() }, function (data) {
@@ -61,5 +80,19 @@ $(function () {
             display += "<p>" + d + "</p>";
         });
         $("#dabb").html(display);
+    }
+
+
+    // javascript web-socket (end)
+    sock.onclose = function(event){
+        if(event.wasClean){
+            showMessage('Clean connection end')
+        }else{
+            showMessage('Connection broken')
+        }
+    };
+    
+    sock.onerror = function(error){
+        showMessage(error);
     }
 });
