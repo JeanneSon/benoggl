@@ -16,7 +16,7 @@ async def index(request):
     #return web.Response(text="Hello, index of Benoggl")
 
 async def favicon(request):
-    return web.FileResponse(path='C:/Users/HScha/1_python_programs/benoggl/src/Bay_schellen.svg')
+    return web.FileResponse(path='C:/Users/HScha/1_python_programs/benoggl/src/img/Bay_schellen.svg')
 
 async def nickname(request):
     try:
