@@ -25,9 +25,17 @@ $(function () {
 
     $("#submit").click(function () {
         if ($("#nickname").val().trim() != "") {
-            $.post("/nickname", { name: $("#nickname").val().trim() }, function (data) {
+            $.post("/nickname", { name: $("#nickname").val().trim() }, function(data) {
                 let d = jQuery.parseJSON(data);
-                if (d["status"] == "ok") welcome(d["message"]);
+                if (d["status"] == "ok") {
+                    welcome(d["message"]);
+                    let players = d["players"].split("&&&");
+                    $("#player_list").empty(); //this list should be empty anyway at this point 
+                    for (let player of players) {
+                        $("#player_list").append('<li>' + player + '</li>');
+                    }
+                    $("#player_list")
+                }
                 else nicknameFail();
             });
         }

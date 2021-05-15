@@ -18,10 +18,10 @@ async def nickname(request):
     print(request.app)
     try:
         data = await request.post()
-        player = data['name']
+        player = data['name'].strip()
         print("Creating a new player with name: ", player)
         players.append(player)
-        response_obj = {'status': 'ok', 'message': 'Your name is ' + player, 'players': '&'.join(players)}
+        response_obj = {'status': 'ok', 'message': 'Your name is ' + player, 'players': '&&&'.join(players)}
         for _ws in request.app['websockets']:
             await _ws.send_json({'player': player})
         return web.Response(text=json.dumps(response_obj), status=200)
