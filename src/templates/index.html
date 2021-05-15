@@ -6,17 +6,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Benoggl</title>
-    {% block javascript %}
-    <script type="text/javascript">
-        {% include "jquery.min.js" %}
-        {% include "script.js" %}
-    </script>
-    <!-- The contents of myscript.js will be loaded inside the script tag -->
-    {% endblock %}
+    <script src="static/js/jquery.min.js"></script>
+    <script src="static/js/script.js"></script>
 </head>
 
 <body>
     <h1>Benoggl isch oifach a subbr Sach!</h1>
+    <div>
+        <h2>Players:</h2>
+        <ul id="player_list"></ul>
+    </div>
     <input type="text" name="message" id="message" placeholder="Check if ws is working.">
     <div id="content">
         <form method="POST">

@@ -12,3 +12,4 @@ def setup_routes(app):
     app.router.add_get( '/getCards',     getCards)
     app.router.add_get( '/seeDabb',      seeDabb)
     app.router.add_get( '/ws',           websocket_handler)
+    app.router.add_static('/static', 'src/static', name='static')

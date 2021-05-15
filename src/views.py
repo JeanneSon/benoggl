@@ -1,5 +1,4 @@
 from aiohttp import web, WSMsgType
-import aiohttp_jinja2
 import json
 from cards import deck
 import random
@@ -9,22 +8,22 @@ cardsDealt = 0
 random.shuffle(deck)
 
 
-
-@aiohttp_jinja2.template('index.html')
 async def index(request):
-    return
-    #return web.Response(text="Hello, index of Benoggl")
+    return web.FileResponse('src/templates/index.html')
 
 async def favicon(request):
     return web.FileResponse(path='C:/Users/HScha/1_python_programs/benoggl/src/img/Bay_schellen.svg')
 
 async def nickname(request):
+    print(request.app)
     try:
         data = await request.post()
         player = data['name']
         print("Creating a new player with name: ", player)
         players.append(player)
         response_obj = {'status': 'ok', 'message': 'Your name is ' + player, 'players': '&'.join(players)}
+        for _ws in request.app['websockets']:
+            await _ws.send_json({'player': player})
         return web.Response(text=json.dumps(response_obj), status=200)
     except Exception as e:
         response_obj = {'status': 'failed', 'message': str(e)}
@@ -52,7 +51,7 @@ async def seeDabb(request):
 async def websocket_handler(request):
     ws = web.WebSocketResponse()
     await ws.prepare(request)
-
+    request.app['websockets'].add(ws)
     async for msg in ws:
         if msg.type == WSMsgType.TEXT:
             if msg.data == 'close':

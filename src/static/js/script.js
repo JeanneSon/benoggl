@@ -8,8 +8,13 @@ $(function () {
     };
 
     sock.onmessage = function (event) {
-        console.log(event.data);
+        let d = JSON.parse(event.data);
+        if ("player" in d) {
+            $("#player_list").append('<li>' + d["player"] + '</li>');
+        }
+
     };
+
 
     $("#message").blur(function () {
         let msg = $('#message');
@@ -86,13 +91,13 @@ $(function () {
     // javascript web-socket (end)
     sock.onclose = function(event){
         if(event.wasClean){
-            showMessage('Clean connection end')
+            console.log('Clean connection end');
         }else{
-            showMessage('Connection broken')
+            console.log('Connection broken');
         }
     };
     
     sock.onerror = function(error){
-        showMessage(error);
+        console.log(error);
     }
 });
