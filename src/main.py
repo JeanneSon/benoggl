@@ -11,7 +11,8 @@ app = web.Application()
 app['config'] = config
 app['websockets'] = weakref.WeakSet()
 
-aiohttp_jinja2.setup(app, loader=jinja2.FileSystemLoader(str(BASE_DIR / 'src' / 'templates')))
+#aiohttp_jinja2.setup(app, loader=jinja2.FileSystemLoader(str(BASE_DIR / 'src' / 'templates')))
 
 setup_routes(app)
-web.run_app(app, host='192.168.2.104')
+#web.run_app(app, host='192.168.2.104')
+web.run_app(app, host='10.10.24.203')

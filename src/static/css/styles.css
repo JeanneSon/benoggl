@@ -2,3 +2,7 @@
     display: inline;
     padding-right: 2em;
 }
+
+#player_list{
+    display: inline;
+}

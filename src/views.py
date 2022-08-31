@@ -12,10 +12,9 @@ async def index(request):
     return web.FileResponse('src/templates/index.html')
 
 async def favicon(request):
-    return web.FileResponse(path='C:/Users/HScha/1_python_programs/benoggl/src/img/Bay_schellen.svg')
+    return web.FileResponse(path='src/img/Bay_schellen.svg')
 
 async def nickname(request):
-    print(request.app)
     try:
         data = await request.post()
         player = data['name'].strip()
